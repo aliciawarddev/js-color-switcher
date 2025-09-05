@@ -1,11 +1,11 @@
 // Array of background color to cycle through
 // Each object has a name (for display) and a value (hex color hue)
 const colors = [
-    { name: 'Cream', value: '#faf8f3' },      // Index 0 - Cream white
-    { name: 'Sage Green', value: '#87a878' },            // Index 1 - Muted sage green
-    { name: 'Teracotta', value: '#c65d3c' },      // Index 2 - Earthy orange
-    { name: 'Marigold', value: '#fdb813' },       // Index 3 - Mustard yellow
-    { name: 'Slate Blue', value: '#6b8ca3' }       // Index 4 - Muted blue-grey
+    { name: 'Cream', value: '#faf8f3', border: '#e6e2db'  },      // Index 0 - Cream white
+    { name: 'Sage Green', value: '#87a878', border: '#79986c' },            // Index 1 - Muted sage green
+    { name: 'Teracotta', value: '#c65d3c', border: '#b35436' },      // Index 2 - Earthy orange
+    { name: 'Marigold', value: '#fdb813', border: '#e4a611' },       // Index 3 - Mustard yellow
+    { name: 'Slate Blue', value: '#6b8ca3', border: '#607d93' }       // Index 4 - Muted blue-grey
 ];
 
 // Track current color index - starts with 0 (White)
@@ -44,7 +44,7 @@ function changeColor() {
     body.style.backgroundColor = currentColor.value;
 
     // Update container border to match
-    container.style.borderColor = currentColor.value;
+    container.style.borderColor = currentColor.border;
 
     // Update the text displays
     // Uses template literal to insert the color name
@@ -66,7 +66,7 @@ dots.forEach((dot, index) => {
 
         // Apply all the same updates as changeColor()
         body.style.backgroundColor = currentColor.value;
-        container.style.borderColor = currentColor.value;
+        container.style.borderColor = currentColor.border;
         colorName.textContent = `Current: ${currentColor.name}`;
         colorHex.textContent = currentColor.value;
 
