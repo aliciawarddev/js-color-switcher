@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Color Switcher</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%237c3aed%22/><text x=%2216%22 y=%2222%22 font-family=%22Arial%22 font-size=%2218%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>🎨</text></svg>">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Favicon: 3 colored dots representing color switching -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23faf8f3%22/><circle cx=%228%22 cy=%2216%22 r=%223%22 fill=%22%2387a878%22/><circle cx=%2216%22 cy=%2216%22 r=%223%22 fill=%22%23c65d3c%22/><circle cx=%2224%22 cy=%2216%22 r=%223%22 fill=%22%23f4c430%22/></svg>">
     
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Main container -->
     <div class="container">
+        <!-- Header -->
         <h1>Background Colour Switcher</h1>
         <p class="subtitle">Click to change colours</p>
 
+        <!-- Main control button -->
         <button id="colorButton">Change Colour</button>
 
-        <p id="colorName">Current: White</p>
+        <!-- Color dots indicator -->
+         <div class="color-dots">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+         </div>
+
+        <!-- Color information display -->
+        <p id="colorName">Current: Cream</p>
+        <p id="colorHex">#faf8f3</p>
     </div>
 
+    <!-- JavaScript-->
     <script src="script.js"></script>
 </body>
 </html>

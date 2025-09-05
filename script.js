@@ -1,11 +1,11 @@
 // Array of background color to cycle through
 // Each object has a name (for display) and a value (hex color hue)
 const colors = [
-    { name: 'White', value: '#ffffff' },        // Index 0
-    { name: 'Light Blue', value: '#a5d8ff' },    // Index 1
-    { name: 'Mint Green', value: '#b2f2bb' },    // Index 2
-    { name: 'Peach', value: '#ffd8a8' },         // Index 3
-    { name: 'Lavender', value: '#d0bfff' }      // Index 4
+    { name: 'Cream', value: '#faf8f3' },      // Index 0 - Cream white
+    { name: 'Sage Green', value: '#87a878' },            // Index 1 - Muted sage green
+    { name: 'Teracotta', value: '#c65d3c' },      // Index 2 - Earthy orange
+    { name: 'Marigold', value: '#fdb813' },       // Index 3 - Mustard yellow
+    { name: 'Slate Blue', value: '#6b8ca3' }       // Index 4 - Muted blue-grey
 ];
 
 // Track current color index - starts with 0 (White)
@@ -14,7 +14,18 @@ let currentColorIndex = 0;
 // Get references to HTML elements that need to be manipulated
 const colorButton = document.getElementById('colorButton');     // The button user clicks
 const colorName = document.getElementById('colorName');         // The text showing current color
+const colorHex = document.getElementById('colorHex');           // New hex display
 const body = document.body;                                     // The body element (for background)
+const container = document.querySelector('.container');          // For border color
+const dots = document.querySelectorAll('.dot');                 // All dot elements
+
+// Function to update dot indicators
+function updateDots() {
+    // Remove active class from all dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    // Add active class to current dot
+    dots[currentColorIndex].classList.add('active');
+}
 
 // Function to change background color
 function changeColor() {
@@ -25,18 +36,48 @@ function changeColor() {
     currentColorIndex = (currentColorIndex + 1) % colors.length;
 
     // Get the current color object from array using the index 
-    // Example: colors[1] gets { name: 'Light Blue', value: #a5d8ff' }
+    // Example: colors[1] gets { name: 'Blue', value: '#6b8ca3' }
     const currentColor = colors[currentColorIndex];
 
     // Apply the color value to body's background
     // Changes the CSS background-color property
     body.style.backgroundColor = currentColor.value;
 
-    // Update the text to show current color name
+    // Update container border to match
+    container.style.borderColor = currentColor.value;
+
+    // Update the text displays
     // Uses template literal to insert the color name
     colorName.textContent = `Current: ${currentColor.name}`; 
+    colorHex.textContent = currentColor.value;
+
+    // Update which dot is highlighted
+    updateDots();
 }
 
-// Connect button to function - when clicked, run changeColor
+// Make dots clickable to jump to any color
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        // Set the color index to the clicked dot's index
+        currentColorIndex = index;
+
+        // Get the color for this index
+        const currentColor = colors[currentColorIndex];
+
+        // Apply all the same updates as changeColor()
+        body.style.backgroundColor = currentColor.value;
+        container.style.borderColor = currentColor.value;
+        colorName.textContent = `Current: ${currentColor.name}`;
+        colorHex.textContent = currentColor.value;
+
+        // Update dot indicators
+        updateDots();
+    });
+});
+
+// Connect button main button to function
 // 'click' is the event type, changeColor is what happens
 colorButton.addEventListener('click', changeColor);
+
+// Initialize the first dot as active on page load 
+updateDots();
